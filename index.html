@@ -364,7 +364,7 @@
 		<h2>О чём поговорим</h2>
 		<ul>
 			<li>Расскажу про <b>наш путь</b> — от первых ассистентов до сквозного SDD</li>
-			<li class="next">Как <b>пересадить всех</b>, включая скептиков, и удержать <b class="a">100% adoption</b></li>
+			<li class="next">Как мы растили ширину и глубину <b class="a">adoption</b></li>
 			<li class="next"><b class="a">SDD</b> как ответ на хаос контекста и разнобой практик</li>
 			<li class="next">Куда <b>сместилось узкое место</b> после adoption</li>
 		</ul>
@@ -411,7 +411,8 @@
 
 	<!-- ========================= ФАЗА 1 ========================= -->
 	<section class="slide">
-		<h2><span class="tag">Фаза 1</span> Автокомплит и ассистент</h2>
+		<h2><span class="tag">Фаза 1</span>Автокомплит и ассистент </h2>
+		<p>Начало 2025</p>
 		<ul>
 			<li>Мы все очень любим <b>JetBrains IDE</b> — поэтому в первую очередь смотрели плагины именно под неё</li>
 			<li class="next">В то время гремел <b>Windsurf</b>: великолепный автокомплит и генерация небольших блоков кода</li>
@@ -457,14 +458,14 @@
 	</section>
 
 	<!-- ========================= ЛИЦЕНЗИИ ========================= -->
-	<section class="slide">
-		<h2>Оплата лицензий</h2>
-		<p class="lead">Отдельный больной вопрос.</p>
-		<ul>
-			<li>Зарегистрировать зарубежный <b>Team-аккаунт</b> в моменте не получилось — несколько попыток, всё мимо</li>
-			<li class="next">Решение на тот момент: <b class="a">система кешбэков за подписки</b></li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>Оплата лицензий</h2>-->
+<!--		<p class="lead">Отдельный больной вопрос.</p>-->
+<!--		<ul>-->
+<!--			<li>Зарегистрировать зарубежный <b>Team-аккаунт</b> в моменте не получилось — несколько попыток, всё мимо</li>-->
+<!--			<li class="next">Решение на тот момент: <b class="a">система кешбэков за подписки</b></li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
 	<!-- ========================= БЕЗОПАСНОСТЬ ========================= -->
 	<section class="slide roomy">
@@ -689,7 +690,6 @@
 	<section class="slide">
 		<h2>Базовые артефакты — структура папок</h2>
 		<pre class="tree"><code>openspec/
-├── project.md            <span class="comment"># контекст проекта, конвенции</span>
 ├── specs/                <span class="comment"># ИСТОЧНИК ИСТИНЫ (domains)</span>
 │   └── &lt;domain&gt;/
 │       └── spec.md
@@ -723,7 +723,7 @@
 			<li class="next">Тесты:
 				<ul>
 					<li><b>v1:</b> тестировщик пишет тесты и e2e</li>
-					<li class="next"><b>v2:</b> e2e берёт на себя разработчик, юнит-тесты — тестировщик</li>
+					<li class="next"><b>v2:</b> e2e берёт на себя разработчик</li>
 				</ul>
 			</li>
 		</ol>
@@ -731,12 +731,25 @@
 
 	<!-- ========================= ПЛАН ТЕСТИРОВАНИЯ ========================= -->
 	<section class="slide">
-		<h2>План тестирования</h2>
+		<h2>План тестирования (test-plan.md)</h2>
 		<ul>
 			<li>План тестов — <b>часть change</b>, рождается вместе с ним</li>
 			<li class="next">Генерируется агентом из <b>proposal и спеки</b></li>
 			<li class="next">Покрытие на нескольких уровнях: <b>юнит/интеграция</b>, <b>компонентный</b> (на фронте) и <b>e2e-сценарии</b></li>
 			<li class="next">Спеки дают <b class="a">проверяемый критерий</b>: тест отвечает на пункт спеки</li>
+		</ul>
+	</section>
+
+
+	<!-- ========================= USECASE VS GHERKIN ========================= -->
+	<section class="slide">
+		<h2>UseCase vs Gherkin</h2>
+		<p class="lead" style="font-size:1em; margin-bottom:.3em;">По умолчанию в <b>OpenSpec</b> — <b class="a">Gherkin</b>.</p>
+		<ul style="font-size:.82em; line-height:1.45;" class="spaced">
+			<li class="next">Попробовали заменить на <b>UseCase</b> по просьбе аналитиков — человеку он читается удобнее</li>
+			<li class="next">Получили <b class="bad">деградацию качества автотестов</b>: Gherkin точнее как приёмочные критерии</li>
+			<li class="next"><b class="a">Вернули Gherkin</b> как основу</li>
+			<li class="next">Для некоторых элементов <b>дополнительно генерируем UseCase</b> — отдельным файлом в change OpenSpec</li>
 		</ul>
 	</section>
 
@@ -769,28 +782,16 @@
 		</ul>
 	</section>
 
-	<!-- ========================= USECASE VS GHERKIN ========================= -->
-	<section class="slide">
-		<h2>UseCase vs Gherkin</h2>
-		<p class="lead" style="font-size:1em; margin-bottom:.3em;">По умолчанию в <b>OpenSpec</b> — <b class="a">Gherkin</b>.</p>
-		<ul style="font-size:.82em; line-height:1.45;" class="spaced">
-			<li class="next">Попробовали заменить на <b>UseCase</b> по просьбе аналитиков — человеку он читается удобнее</li>
-			<li class="next">Получили <b class="bad">деградацию качества автотестов</b>: Gherkin точнее как приёмочные критерии</li>
-			<li class="next"><b class="a">Вернули Gherkin</b> как основу</li>
-			<li class="next">Для некоторых элементов <b>дополнительно генерируем UseCase</b> — отдельным файлом в change OpenSpec</li>
-		</ul>
-	</section>
-
 	<!-- ========================= ПЛАНЫ ========================= -->
-	<section class="slide">
-		<h2>Планы как артефакт</h2>
-		<ul>
-			<li>План реализации (<code>tasks.md</code>) делает <b>агент</b> на основе proposal и ADR</li>
-			<li class="next">План — <b>проверяемый и обозримый</b> список шагов</li>
-			<li class="next">Человек ревьюит <b>план до кода</b> — дешевле поймать ошибку на этом шаге</li>
-			<li class="next">План живёт в change и архивируется вместе с ним</li>
-		</ul>
-	</section>
+<!--	<section class="slide">-->
+<!--		<h2>Планы как артефакт</h2>-->
+<!--		<ul>-->
+<!--			<li>План реализации (<code>tasks.md</code>) делает <b>агент</b> на основе proposal и ADR</li>-->
+<!--			<li class="next">План — <b>проверяемый и обозримый</b> список шагов</li>-->
+<!--			<li class="next">Человек ревьюит <b>план до кода</b> — дешевле поймать ошибку на этом шаге</li>-->
+<!--			<li class="next">План живёт в change и архивируется вместе с ним</li>-->
+<!--		</ul>-->
+<!--	</section>-->
 
 	<!-- ========================= ТРАССИРОВКА: КОД → СМЫСЛ ========================= -->
 	<section class="slide">
@@ -840,9 +841,9 @@
 
 	<!-- ========================= SPEK: СПИСОК CHANGES ========================= -->
 	<section class="slide tight">
-		<h2>spek · список changes</h2>
-		<img class="shot" src="pictures/chrome_OnXVj79RXl.png" style="max-height:350px; max-width:94%;" alt="Сервис spek: список активных changes с прогресс-барами выполнения задач и секцией Archived">
-		<p class="shot-cap">Активные предложения с прогрессом задач и архив — на одном экране</p>
+		<h2 style="margin-top: -30px;">spek · список changes</h2>
+		<img class="shot" src="pictures/chrome_OnXVj79RXl.png" style="max-height:420px; max-width:94%;" alt="Сервис spek: список активных changes с прогресс-барами выполнения задач и секцией Archived">
+<!--		<p class="shot-cap">Активные предложения с прогрессом задач и архив — на одном экране</p>-->
 	</section>
 
 	<!-- ========================= SPEK: ПРОСМОТР CHANGE ========================= -->
