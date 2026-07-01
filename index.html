@@ -228,11 +228,13 @@
 		.slide .cards.skills .card { padding: 16px 18px; }
 		.slide .cards.skills .card ul { margin: .35em 0 0; padding-left: 1.05em; list-style: disc; }
 		.slide .cards.skills .card li { font-size: .64em; line-height: 1.32; margin: 0 0 .28em; }
+		.slide .cards.skills .card li::before { content: none; } /* убираем тему-маркер «—», оставляем disc */
 		.slide .cards.skills .card li:last-child { margin-bottom: 0; }
 		.slide .cards.skills .card li b { font-weight: 700; }
 		
 		/* ——— Карточки докладов «Погружение в SDD» ——— */
-		.talk-cards { display: flex; flex-direction: row; gap: 20px; margin: 14px 0 0; }
+		.slide.sdd-talks > h2 { margin-top: -6px; }
+		.talk-cards { display: flex; flex-direction: row; gap: 20px; margin: 10px 0 0; align-items: stretch; }
 		.talk-card {
 			flex: 1 1 0; min-width: 0;
 			display: flex; flex-direction: column;
@@ -275,8 +277,8 @@
 		.flag-rec  { background: rgba(0, 0, 0, 0.07); color: #555555; }
 		.talk-title {
 			font-size: 21px; font-weight: 700; line-height: 1.24;
-			min-height: 104px;
-			margin: 0 0 14px; color: #111111;
+			min-height: 92px;
+			margin: 0 0 12px; color: #111111;
 		}
 		.talk-bottom { margin-top: auto; }
 		.talk-who-row { display: flex; align-items: center; gap: 13px; }
@@ -291,14 +293,22 @@
 		.talk-who b { display: block; color: #1a1a1a; font-size: 17px; }
 		.talk-who span { color: #666666; }
 		.talk-when { margin-top: 12px; }
+		.talk-when-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 14px; }
 		.badge-when {
 			display: inline-block;
 			font-size: 14px; font-weight: 700;
-			padding: 4px 13px; border-radius: 20px;
+			padding: 5px 14px; border-radius: 20px;
 			background: rgba(0, 0, 0, 0.07); color: #333333;
 			letter-spacing: 0.3px;
 		}
 		.badge-when.is-soon { background: rgba(14, 148, 102, 0.14); color: #0b6b4c; }
+		.talk-qr {
+			width: 52px; height: 52px; display: block;
+			border-radius: 7px; padding: 3px;
+			background: #ffffff; border: 1px solid #cfe4d9;
+		}
+		.talk-qr-cap { font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #0b6b4c; text-align: center; margin-top: 3px; line-height: 1; }
+		.talk-qr-wrap { display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
 
 		/* ——— Флажок с номером слайда в тон фону Arch.Meetup ——— */
 		.slide::after { background-image: url("pictures/ribbon-meetup.svg"); }
@@ -343,19 +353,19 @@
 	</section>
 
 	<!-- ========================= ВЕБПРАКТИК ========================= -->
-	<section class="slide">
-		<h2>Вебпрактик — <span class="a" style="white-space:nowrap;">веб-интегратор</span> для корпораций</h2>
+	<section class="slide" style="padding:0; overflow:hidden;">
 		<img src="pictures/clients.svg" alt="Логотипы клиентов Вебпрактик — крупные корпорации"
-			 style="display:block; width:auto; max-width:100%; max-height:360px; margin:12px auto 0;">
+			 style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+		<h2 style="position:absolute; top:40px; left:60px; right:60px; margin:0; z-index:2; white-space:nowrap; font-size:38px;">Вебпрактик — <span class="a">веб-интегратор</span> для корпораций</h2>
 	</section>
 
 	<!-- ========================= О ЧЁМ ПОГОВОРИМ ========================= -->
 	<section class="slide roomy">
-		<h2>О чём поговорим</h2>
+		<h2>О чём поговорим</h2>
 		<ul>
-			<li>Расскажу про <b>наш путь</b> — от первых ассистентов до сквозного SDD</li>
-			<li class="next">Как <b>пересадить всех</b>, включая скептиков, и удержать <b class="a">100% adoption</b></li>
-			<li class="next"><b class="a">SDD</b> как ответ на хаос контекста и разнобой практик</li>
+			<li>Расскажу про <b>наш путь</b> — от первых ассистентов до сквозного SDD</li>
+			<li class="next">Как <b>пересадить всех</b>, включая скептиков, и удержать <b class="a">100% adoption</b></li>
+			<li class="next"><b class="a">SDD</b> как ответ на хаос контекста и разнобой практик</li>
 			<li class="next">Куда <b>сместилось узкое место</b> после adoption</li>
 		</ul>
 	</section>
@@ -458,11 +468,11 @@
 
 	<!-- ========================= БЕЗОПАСНОСТЬ ========================= -->
 	<section class="slide roomy">
-		<h2>Безопасность и внешние подписки</h2>
+		<h2>Безопасность и внешние подписки</h2>
 		<ul>
-			<li><b>Фрагменты кода — не ценность</b> в большинстве проектов. Т‑Банк и другой бигтех <b>публично заявляют</b>, что разрешают внешние подписки</li>
-			<li class="next">У разработчика <b>нет доступа к критичным местам</b> с перс. данными. Нет у разработчика — <b class="a">нет и у модели</b></li>
-			<li class="next">Подняли <b>LiteLLM Proxy + Presidio</b> для контроля утечки ключей и PII. И главное — у разработчика не должно быть критичных ключей, которые сможет прочитать агент</li>
+			<li><b>Фрагменты кода — не ценность</b> в большинстве проектов. Т‑Банк и другой бигтех <b>публично заявляют</b>, что разрешают внешние подписки</li>
+			<li class="next">У разработчика <b>нет доступа к критичным местам</b> с перс. данными. Нет у разработчика — <b class="a">нет и у модели</b></li>
+			<li class="next">Подняли <b>LiteLLM Proxy + Presidio</b> для контроля утечки ключей и PII. И главное — у разработчика не должно быть критичных ключей, которые сможет прочитать агент</li>
 		</ul>
 	</section>
 
@@ -541,11 +551,11 @@
 
 	<!-- ========================= ГЛУБИНА ADOPTION ========================= -->
 	<section class="slide roomy">
-		<h2>Что такое глубина adoption</h2>
+		<h2>Что такое глубина adoption</h2>
 		<ul>
-			<li><b class="a">Ширина</b> — сколько людей вообще используют агентов. У нас это <b>100%</b></li>
-			<li class="next"><b class="a">Глубина</b> — насколько зрело они это делают: работа с контекстом, инженерные практики, харнесс, декомпозиция, проверки результата</li>
-			<li class="next"><b>100% ширины ≠ 100% глубины:</b> пользуются все, но кто-то на уровне «сделай за меня», а кто-то системно ведёт агента</li>
+			<li><b class="a">Ширина</b> — сколько людей вообще используют агентов. У нас это <b>100%</b></li>
+			<li class="next"><b class="a">Глубина</b> — насколько зрело они это делают: работа с контекстом, инженерные практики, харнесс, декомпозиция, проверки результата</li>
+			<li class="next"><b>100% ширины ≠ 100% глубины:</b> пользуются все, но кто-то на уровне «сделай за меня», а кто-то системно ведёт агента</li>
 		</ul>
 	</section>
 
@@ -934,7 +944,7 @@
 
 	<!-- ========================= СКИЛЫ — ОСНОВНЫЕ БЛОКИ ========================= -->
 	<section class="slide">
-		<h2>Скилы: из чего собран <span class="a">harness</span></h2>
+		<h2>Скилы — лишь часть нашего <span class="a">harness</span></h2>
 		<div class="cards skills">
 			<div class="card">
 				<span class="yr">берём из сообщества</span>
@@ -1005,7 +1015,7 @@
 	</section>
 
 	<!-- ========================= ПОГРУЖЕНИЕ В SDD ========================= -->
-	<section class="slide">
+	<section class="slide sdd-talks">
 		<h2>Погружение в SDD</h2>
 		<div class="talk-cards">
 
@@ -1037,7 +1047,13 @@
 						<img class="talk-photo" src="pictures/speaker.png" alt="Иван Поддубный">
 						<div class="talk-who"><b>Иван Поддубный</b><span>CTO Вебпрактик</span></div>
 					</div>
-					<div class="talk-when"><span class="badge-when is-soon">В пятницу · agenticdevconf.ru</span></div>
+					<div class="talk-when-row">
+						<span class="badge-when is-soon">В пятницу · agenticdevconf.ru</span>
+						<div class="talk-qr-wrap">
+							<img class="talk-qr" src="pictures/qr-agenticdevconf.svg" alt="QR · agenticdevconf.ru">
+							<span class="talk-qr-cap">программа</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
